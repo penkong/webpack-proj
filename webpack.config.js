@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const VENDOR_LIBS = [
   'faker',
@@ -39,6 +40,9 @@ module.exports = {
   plugins : [
     new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor'
-    })    //pull out duplicate and erase them.
+    }),    //pull out duplicate and erase them.
+    new HtmlWebpackPlugin({ //we make new html in src and she use as template make new html in dist
+      template : 'src/index.html'
+    })  //produce new html with all new vendor and stuff
   ]
 };
