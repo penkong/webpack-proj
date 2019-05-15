@@ -22,7 +22,7 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].js' //means vendor and bundle
+    filename: '[name].[chunkhash].js' //means vendor and bundle //add hash for browser to understand changes
   },
   module : {
     rules : [
@@ -39,7 +39,7 @@ module.exports = {
   },
   plugins : [
     new webpack.optimize.CommonsChunkPlugin({
-      name : 'vendor'
+      names : ['vendor', 'manifest'] //cause of hashing add it for browser ustand vendor change or not by manifest
     }),    //pull out duplicate and erase them.
     new HtmlWebpackPlugin({ //we make new html in src and she use as template make new html in dist
       template : 'src/index.html'
