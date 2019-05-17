@@ -43,6 +43,10 @@ module.exports = {
     }),    //pull out duplicate and erase them.
     new HtmlWebpackPlugin({ //we make new html in src and she use as template make new html in dist
       template : 'src/index.html'
-    })  //produce new html with all new vendor and stuff
+    }),  //produce new html with all new vendor and stuff
+    new webpack.DefinePlugin({ //this is for deploy
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    }) //reactjs search for porcessenvnodeenv , dont do error checking so much in prod
+    //DEFINEPLUGIN make it available on window scope > add script of node to package 
   ]
 };
